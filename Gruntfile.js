@@ -194,6 +194,10 @@ module.exports = function (grunt) {
         },
         imagemin: {
             dist: {
+                options: {
+                    optimizationLevel: 3,
+                    progressive: true
+                },
                 files: [{
                     expand: true,
                     cwd: '<%= yeoman.app %>/images',
@@ -305,6 +309,30 @@ module.exports = function (grunt) {
             },
             all: {
                 rjsConfig: '<%= yeoman.app %>/scripts/main.js'
+            }
+        },
+        responsive_images: {
+            dev: {
+                options: {
+                  sizes: [{
+                    width: 320,
+                    height: 240
+                  },{
+                    name: 'large',
+                    width: 640
+                  },{
+                    name: "large",
+                    width: 1024,
+                    suffix: "_x2",
+                    quality: 0.6
+                  }]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/img',
+                    src: '*.png',
+                    dest: '<%= yeoman.app %>/images/'
+                }]
             }
         }
     });
